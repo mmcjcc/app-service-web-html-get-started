@@ -4,7 +4,7 @@
   "description": "Declares the front-end libraries this site actually ships, so they can be scanned.",
   "private": true,
   "dependencies": {
-    "bootstrap": "3.4.1",
+    "bootstrap": "5.0.0",
     "jquery": "3.5.0"
   }
 }
