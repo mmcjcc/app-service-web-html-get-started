@@ -1,9 +1,8 @@
-/* CYSC-620 Lab 5 sample - the same code you typed in VS Code on Netlab.
-   This file is intentionally insecure and is never compiled or deployed. */
+/* CYSC-620 Lab 5 sample - FIXED: gets() replaced with a bounded read. */
 #include <stdio.h>
 
 int main() {
     char src[40];
-    gets(src);
+    fgets(src, sizeof(src), stdin);
     return 0;
 }
