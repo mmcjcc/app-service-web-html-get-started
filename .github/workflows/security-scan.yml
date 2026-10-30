@@ -1,0 +1,33 @@
+- name: DevSkim
+  uses: microsoft/DevSkim-Action@v1.0.16
+  with:
+    # The sub directory of the repository root to scan. Repository root used by default.
+    directory-to-scan: # optional, default is GITHUB_WORKSPACE
+    # Optional comma separated list of file globs to ignore when scanning.
+    ignore-globs: # optional, default is **/.git/**,**/bin/**
+
+
+
+
+name: Security scan
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+jobs:
+  devskim:
+    name: DevSkim
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/DevSkim-Action@v1
+        with:
+          ignore-globs:"**/css/**,**/fonts/**,**/img/**,**/js/bootstrap*,**/ie*.js"
+      - uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: devskim-results.sarif
